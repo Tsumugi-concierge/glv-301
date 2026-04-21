@@ -42,7 +42,7 @@ body::after {
 body::before {
   top: -120px; right: -100px;
   width: 360px; height: 360px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--accent, #f0824a) 28%, transparent) 0%, transparent 70%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent, #3e7cb1) 28%, transparent) 0%, transparent 70%);
 }
 body::after {
   bottom: -140px; left: -120px;
@@ -65,7 +65,7 @@ main {
   position: absolute;
   left: -9999px;
   top: 10px;
-  background: var(--accent, #f0824a);
+  background: var(--accent, #3e7cb1);
   color: #fff;
   padding: 10px 16px;
   border-radius: 999px;
@@ -82,7 +82,7 @@ main {
   background: rgba(253, 246, 238, 0.82);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid color-mix(in srgb, var(--accent, #f0824a) 20%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent, #3e7cb1) 20%, transparent);
   box-shadow: var(--shadow-xs);
   padding-top: calc(12px + env(safe-area-inset-top));
 }
@@ -159,12 +159,12 @@ main {
   transition: all 0.2s ease;
 }
 .lang-btn.active {
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent, #f0824a) 35%, transparent);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent, #3e7cb1) 35%, transparent);
 }
 .lang-btn:focus-visible:not(.active) {
   outline: none;
-  border-color: var(--accent, #f0824a);
-  color: var(--accent, #f0824a);
+  border-color: var(--accent, #3e7cb1);
+  color: var(--accent, #3e7cb1);
 }
 
 /* ── Card refinement ── */
@@ -199,7 +199,7 @@ main {
 /* ── Focus-visible safety net ── */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent, #f0824a);
+  outline: 2px solid var(--accent, #3e7cb1);
   outline-offset: 2px;
   border-radius: 4px;
 }
