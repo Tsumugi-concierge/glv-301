@@ -1,0 +1,234 @@
+/* ─────────────────────────────────────────────────────────────────
+   GLV 301 · Sub-page shared refinements
+   Loaded AFTER each page's inline <style>, so same-specificity rules
+   here win. Uses each page's own --accent variable (preserves per-
+   page color identity). Keeps everything non-destructive.
+   ───────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Warm shadow system — layered for depth without heaviness */
+  --shadow-xs: 0 1px 2px rgba(120, 80, 60, 0.06);
+  --shadow-sm: 0 2px 8px rgba(120, 80, 60, 0.09);
+  --shadow-md: 0 4px 18px rgba(120, 80, 60, 0.12);
+  --shadow-lg: 0 10px 34px rgba(120, 80, 60, 0.18);
+  --shadow-hover: 0 14px 38px rgba(120, 80, 60, 0.22);
+
+  /* Consistent radii + eases */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 28px;
+  --ease-pop: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+  padding-bottom: env(safe-area-inset-bottom);
+  line-height: 1.55;
+  position: relative;
+}
+
+/* Soft warm ambient gradient blobs (behind content) */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(4px);
+}
+body::before {
+  top: -120px; right: -100px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent, #f0824a) 28%, transparent) 0%, transparent 70%);
+}
+body::after {
+  bottom: -140px; left: -120px;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(195, 222, 221, 0.55) 0%, transparent 72%);
+}
+
+/* Elevate page content above the blobs */
+.top-bar,
+.lang-bar,
+.hero,
+.content,
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 10px;
+  background: var(--accent, #f0824a);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 800;
+  z-index: 1000;
+  text-decoration: none;
+}
+.skip-link:focus { left: 10px; }
+
+/* ── Top bar refinement ── */
+.top-bar {
+  top: env(safe-area-inset-top);
+  background: rgba(253, 246, 238, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent, #f0824a) 20%, transparent);
+  box-shadow: var(--shadow-xs);
+  padding-top: calc(12px + env(safe-area-inset-top));
+}
+
+/* ── Back button refinement ── */
+.back-btn {
+  border-radius: 999px;
+  padding: 8px 16px 8px 12px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s var(--ease-pop), box-shadow 0.2s, opacity 0.2s;
+  letter-spacing: 0.02em;
+}
+.back-btn:hover,
+.back-btn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  opacity: 1;
+  outline: none;
+}
+.back-btn:active { transform: translateY(0); }
+
+/* ── Top bar title polish ── */
+.top-bar-title {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Hero polish ── */
+.hero {
+  padding: 44px 24px 38px;
+  overflow: hidden;
+  position: relative;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -30px; top: -30px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+.hero-icon {
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.18));
+  animation: floatIcon 3.5s ease-in-out infinite;
+}
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+.hero h1 {
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0.01em;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.08);
+}
+.hero-sub {
+  letter-spacing: 0.03em;
+}
+
+/* ── Language switcher polish ── */
+.lang-bar {
+  padding: 12px 16px 4px;
+  position: relative;
+  z-index: 2;
+}
+.lang-btn {
+  border-width: 1.5px;
+  padding: 5px 10px;
+  box-shadow: var(--shadow-xs);
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+.lang-btn.active {
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent, #f0824a) 35%, transparent);
+}
+.lang-btn:focus-visible:not(.active) {
+  outline: none;
+  border-color: var(--accent, #f0824a);
+  color: var(--accent, #f0824a);
+}
+
+/* ── Card refinement ── */
+.card {
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(120, 80, 60, 0.05);
+  transition: box-shadow 0.25s ease, transform 0.25s var(--ease-pop);
+}
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-title {
+  letter-spacing: 0.01em;
+}
+
+/* ── Back footer button ── */
+.back-footer a {
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s var(--ease-pop), box-shadow 0.2s, opacity 0.2s;
+  letter-spacing: 0.02em;
+}
+.back-footer a:hover,
+.back-footer a:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  opacity: 1;
+  outline: none;
+}
+
+/* ── Focus-visible safety net ── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent, #f0824a);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.back-btn:focus-visible,
+.lang-btn:focus-visible,
+.back-footer a:focus-visible {
+  outline: none; /* custom focus above */
+}
+
+/* ── Image polish ── */
+img,
+.meter-photo,
+.photo,
+.card img {
+  border-radius: var(--r-md);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Small utility: trailing bottom breathing room ── */
+.content {
+  padding-bottom: calc(48px + env(safe-area-inset-bottom));
+}
