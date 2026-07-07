@@ -33,6 +33,8 @@
   .rest-card a:hover{opacity:0.75;}
   .page-img{width:100%;border-radius:12px;margin:12px 0;box-shadow:0 2px 12px rgba(60,80,120,0.12);}
 </style>
+  <link rel="stylesheet" href="../assets/cute-pack.css">
+  <style id="cute-pack-theme">:root{--cp-chip-a:#dde8f2;--cp-chip-b:#fdf1f7;--cp-hover-shadow:rgba(62,124,177,.18);--cp-dot-1:rgba(140,180,220,.12);}</style>
 </head>
 <body>
 <div class="lang-bar">
@@ -96,5 +98,6 @@ const S={
 function setLang(l,btn){document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const t=S[l];if(!t)return;document.querySelectorAll('[data-i18n]:not([data-i18n="pageTitle"])').forEach(el=>{const k=el.getAttribute('data-i18n');if(k in t)el.textContent=t[k];});}
 setLang('en',document.querySelector('.lang-btn.active'));
 </script>
+  <script src="../assets/cute-pack.js" defer></script>
 </body>
 </html>
